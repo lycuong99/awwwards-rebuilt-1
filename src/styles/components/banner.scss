@@ -1,0 +1,20 @@
+.main{
+  height: 50vh;
+  height: calc( var(--vh, 1vh) * 50);
+
+  .row{
+    h2{
+      .line{
+        span{
+
+        }
+      }
+    }
+
+    .btn-row{
+      a{
+        text-decoration: none;
+      }
+    }
+  }
+}
