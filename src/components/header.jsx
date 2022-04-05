@@ -1,22 +1,28 @@
 import gsap from "gsap";
 import React, { useEffect } from "react";
 import { useState } from "react";
+import { NavLink, useNavigate, useLocation } from "react-router-dom";
+// import { useLocation } from "react-router";
 import { ReactComponent as UpArrowCircle } from "../assets/up-arrow-circle.svg";
 
 const tl = gsap.timeline();
 const Header = () => {
   const [menuState, setMenuState] = useState({ menuOpened: false });
 
+  let location = useLocation();
+
+  useEffect(() => {
+    setMenuState({ menuOpened: false });
+  }, [location]);
+
   useEffect(() => {
     if (menuState.menuOpened === true) {
-      gsap.to("nav", { display: "block" });
-      gsap.to("body", { overflow: "hidden" });
-
-      tl.to(".App", {
-        duration: 1,
-        y: window.innerWidth <= 654 ? "70vh" : window.innerHeight / 2,
-        ease: "expo.inOut",
-      })
+      tl.to("body", { duration: 0.01, overflow: "hidden" })
+        .to(".App", {
+          duration: 1,
+          y: window.innerWidth <= 654 ? "70vh" : window.innerHeight / 2,
+          ease: "expo.inOut",
+        })
         .to(".hamburger-menu span", {
           duration: 0.6,
           delay: -1,
@@ -108,9 +114,6 @@ const Header = () => {
         })
         .to("body", {
           overflow: "auto",
-        })
-        .to("nav", {
-          display: "none",
         });
     }
   });
@@ -119,7 +122,7 @@ const Header = () => {
       <div className="container">
         <div className="row v-center space-between">
           <div className="logo">
-            <a href="/">AGENCY.</a>
+            <NavLink to="/">AGENCY.</NavLink>
           </div>
           <div className="nav-toggle">
             <div
