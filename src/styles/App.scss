@@ -4,6 +4,7 @@
 @import "./components/header.scss";
 @import "./components/banner.scss";
 @import "./components/cases.scss";
+@import "./components/navigation.scss";
 
 body,
 html {
@@ -57,5 +58,104 @@ html {
   .row {
     display: flex;
     height: 100%;
+  }
+}
+
+//intro-overlay
+.intro-overlay {
+  .top {
+    height: 50vh;
+    height: calc(var(--vh, 1vh) * 50);
+    width: 100%;
+    z-index: 8;
+    position: absolute;
+
+    .overlay-top {
+      position: absolute;
+      height: 100%;
+      width: 33.33vw;
+      left: 0;
+      bottom: 0;
+      background-color: $black;
+
+      @include media("<=tablet") {
+        width: 100%;
+      }
+
+      &:nth-child(2) {
+        left: 33.33%;
+
+        @include media("<=tablet") {
+          display: none;
+        }
+      }
+
+      &:nth-child(3) {
+        left: 66.66%;
+
+        @include media("<=tablet") {
+          display: none;
+        }
+      }
+    }
+  }
+  .bottom {
+    height: 50vh;
+    height: calc(var(--vh, 1vh) * 50);
+    width: 100%;
+    z-index: 8;
+    position: absolute;
+    bottom: 0;
+    .overlay-bottom {
+      background-color: $black;
+      position: absolute;
+      height: 100%;
+      width: 33.33vw;
+      right: 66.66%;
+      bottom: 0;
+
+      @include media("<=tablet") {
+        width: 100%;
+        right: 0;
+      }
+
+      &:nth-child(2) {
+        right: 33.33%;
+
+        @include media("<=tablet") {
+          right: 0;
+
+          width: 100%;
+          top: 100%;
+        }
+      }
+
+      &:nth-child(3) {
+        right: 0%;
+
+        @include media("<=tablet") {
+          width: 100%;
+          right: 0;
+          top: 200%;
+        }
+      }
+    }
+  }
+}
+
+.App {
+  z-index: 2;
+  transform: translateY(0);
+  position: relative;
+}
+
+.page {
+  height: 100vh;
+  width: 100%;
+  background: $white;
+
+  .row {
+    display: flex;
+    align-items: center;
   }
 }
